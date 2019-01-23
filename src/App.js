@@ -1,26 +1,53 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './css/index.css';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import routes from './model/router';
+
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+        <Router>
+			<div>
+				<header className="title">
+					<Link to="/">首页组件</Link>
+					<Link to="/user">用户页面</Link>
+					<Link to="/shop">商户</Link>
+					<Link to="/news">新闻</Link>
+				</header>
+
+{/*				{
+					routes.map((route, key) => {
+						if(route.exact) {
+							return <Route key={key} exact path={route.path} component={route.component} />
+						}else {
+							return <Route key={key} path={route.path} component={route.component} />
+						}
+
+					})
+				}*/}
+				{
+					routes.map((route, key) => {
+						if(route.exact) {
+							return <Route key={key} exact path={route.path}
+										  render={props => (
+											  // pass the sub-routes down to keep nesting
+											  <route.component {...props} routes={route.routes} />
+										  )}
+									/>
+						}else {
+							return <Route key={key} path={route.path}
+										  render={props => (
+											  // pass the sub-routes down to keep nesting
+											  <route.component {...props} routes={route.routes} />
+										  )}
+									/>
+						}
+
+					})
+				}
+			  </div>
+        </Router>
     );
   }
 }

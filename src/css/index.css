@@ -1,0 +1,10 @@
+.title{
+  height: 44px;
+  line-height:44px;
+  background: #000;
+}
+.title a{
+  color:#fff;
+  padding:0 20px;
+  width: 300px;
+}

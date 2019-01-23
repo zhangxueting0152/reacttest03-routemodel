@@ -1,0 +1,12 @@
+/*@import '~antd/dist/antd.css';*/
+
+.left {
+    float: left;
+    width: 20%;
+    height:500px;
+    background-color: #d0c7ff;
+}
+.right {
+    float: right;
+    width: 70%;
+}
